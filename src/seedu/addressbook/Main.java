@@ -109,7 +109,14 @@ public class Main {
         try {
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
-            storage.save(addressBook);
+
+            try {
+                storage.save(addressBook);
+            } catch (StorageOperationException e) {
+                ui.showToUser(e.getMessage());
+                ui.showToUser("Changes made may not be permanent.");
+            }
+
             return result;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());

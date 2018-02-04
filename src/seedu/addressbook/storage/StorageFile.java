@@ -104,7 +104,8 @@ public class StorageFile {
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
-
+        } catch (FileNotFoundException e) {
+            throw new StorageOperationException("Error writing to file: " + e.getMessage() + " File does not exist or file is read-only");
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {

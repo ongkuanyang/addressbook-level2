@@ -99,6 +99,10 @@
   # matching should be case-sensitive
   find betsy
 
+  # find tag
+  find starchy
+  # find tag and name
+  find starchy Betsy
   # find unique keyword
   find Betsy
   # find multiple with same keyword

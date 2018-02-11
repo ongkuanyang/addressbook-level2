@@ -40,6 +40,12 @@ public class FindCommandTest {
 
         //Keyword matching a word in address: not matched
         assertFindCommandBehavior(new String[]{"Clementi"}, Collections.emptyList());
+
+        //Keyword matching a word in Tag: matched
+        assertFindCommandBehavior(new String[]{"Test"}, Arrays.asList(td.dan));
+
+        //Keywords matching both tag and name: matched
+        assertFindCommandBehavior(new String[]{"Test", "Amy"}, Arrays.asList(td.amy, td.dan));
     }
 
     /**
@@ -51,6 +57,7 @@ public class FindCommandTest {
         CommandResult result = command.execute();
 
         assertEquals(Command.getMessageForPersonListShownSummary(expectedPersonList), result.feedbackToUser);
+        assertEquals(expectedPersonList, result.getRelevantPersons().get());
     }
 
     private FindCommand createFindCommand(String[] keywords) {

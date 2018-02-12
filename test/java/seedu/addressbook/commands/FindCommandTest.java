@@ -38,6 +38,9 @@ public class FindCommandTest {
         //repeated keywords: matched
         assertFindCommandBehavior(new String[]{"Amy", "Amy"}, Arrays.asList(td.amy));
 
+        //repeated keywords for tag: matched
+        assertFindCommandBehavior(new String[]{"Test", "Test"}, Arrays.asList(td.dan));
+
         //Keyword matching a word in address: not matched
         assertFindCommandBehavior(new String[]{"Clementi"}, Collections.emptyList());
 
